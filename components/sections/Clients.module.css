@@ -44,6 +44,11 @@
 .cell:nth-child(2n) {
   border-right: 0;
 }
+/* An odd one out on the last row takes the full width. */
+.cell:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  border-right: 0;
+}
 .link {
   display: grid;
   place-items: center;
@@ -81,7 +86,7 @@
     align-self: start;
   }
   .grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     margin-right: var(--margin);
     border-left: 1px solid var(--line);
   }
@@ -89,13 +94,16 @@
     min-height: 11rem;
     border-top: 0;
   }
-  .cell:nth-child(n + 5) {
+  .cell:nth-child(n + 4) {
     border-top: 1px solid var(--line);
   }
   .cell:nth-child(2n) {
     border-right: 1px solid var(--line);
   }
-  .cell:nth-child(4n) {
+  .cell:last-child:nth-child(odd) {
+    grid-column: auto;
+  }
+  .cell:nth-child(3n) {
     border-right: 0;
   }
 }

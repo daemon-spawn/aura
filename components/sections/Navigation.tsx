@@ -102,7 +102,7 @@ export function Navigation() {
         </div>
       </div>
 
-      <div id="mobile-menu" className={`${styles.menu} ${open ? styles.menuOpen : ""}`} hidden={!open}>
+      <div id="mobile-menu" className={`${styles.menu} ${open ? styles.menuOpen : ""}`} hidden={!open} data-lenis-prevent>
         <nav aria-label="Mobile" className="container">
           <ul className={styles.menuList}>
             {[{ label: "Home", href: "/" }, ...site.nav, { label: "Contact", href: "/contact" }].map((item, i) => (

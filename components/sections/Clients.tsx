@@ -4,7 +4,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import styles from "./Clients.module.css";
 
 /**
- * "Brands I've helped" — MONOLOG pattern: dot label on the left, a 4 × 2 grid
+ * "Brands I've helped" — MONOLOG pattern: dot label on the left, a 3 × 3 grid
  * of single-colour marks divided by hairlines (no outer border).
  */
 export function Clients() {
@@ -31,7 +31,7 @@ export function Clients() {
               <span className={`serif ${styles.wordmark}`}>{c.name}</span>
             );
             return (
-              <li key={c.id} className={styles.cell} data-anim="fade" data-anim-delay={String((i % 4) * 0.06)}>
+              <li key={c.id} className={styles.cell} data-anim="fade" data-anim-delay={String((i % 3) * 0.06)}>
                 {c.project ? (
                   <Link href={`/work/${c.project}`} className={styles.link} aria-label={`${c.name} — case study`}>
                     {mark}

@@ -355,6 +355,50 @@ export const projects: Project[] = [
     now: "Built, with the public launch to follow.",
   },
   {
+    // CONFIRM: year, scope and stack — the copy below only states what the live site shows. Video to follow.
+    slug: "cashflow-loans",
+    stat: { value: "R100–R100k", label: "secured or unsecured, with the full payback shown before anyone applies" },
+    url: "cashflowloans.co.za",
+    service: "Presence",
+    code: "Presence 06",
+    outcome: "A lender that shows its terms before the application: pick an amount, see the total to pay back, then apply.",
+    date: "2025",
+    name: "Cashflow Loans",
+    client: "Cashflow Loans",
+    sector: "Financial services",
+    year: "2025",
+    type: "Website",
+    summary: "A website for a South African lender offering secured and unsecured personal loans.",
+    line: "The cost first, then the application.",
+    scope: ["Design", "Development", "Content structure"],
+    stack: ["Responsive website"],
+    status: "Live",
+    situation: [
+      "Cashflow Loans is a South African lender offering secured and unsecured personal loans from R100 to R100,000. By accepting collateral such as mobile devices, vehicle titles or property, it lends to people a bank would turn away.",
+      "Someone looking for a loan wants three answers before they share any details: how much they can get, what it will cost, and whether they can trust the lender. The site had to give those answers first.",
+    ],
+    built: [
+      {
+        title: "The cost, up front",
+        body: "A loan calculator on the home page: choose secured or unsecured, pick an amount, and see the fixed term, the fixed interest and the total to pay back before applying.",
+      },
+      {
+        title: "Questions answered before they're asked",
+        body: "An FAQ on the loan types, how secured and unsecured applications work, DebiCheck, how collateral and personal information are kept safe, and how quickly funds arrive.",
+      },
+      {
+        title: "Guidance, not just a form",
+        body: "Plain-language articles such as secured vs unsecured loans, personal loans vs payday loans, and how to avoid the debt spiral.",
+      },
+      {
+        title: "Help within reach",
+        body: "Apply for Loan from every section, with phone, email and opening hours — Monday to Saturday, 8am to 5pm — in the header and footer.",
+      },
+    ],
+    now: "Live at cashflowloans.co.za.",
+    palette: ["#0B1700", "#BED429", "#8BBF12", "#D99B22"],
+  },
+  {
     slug: "krdf-prosuite",
     url: "krdf-prosuite.vercel.app",
     screen: {
