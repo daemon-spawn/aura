@@ -1,0 +1,43 @@
+.aside {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  margin-bottom: 4rem;
+}
+.steps {
+  margin-top: 1.25rem;
+  border-top: 1px solid var(--line);
+}
+.steps li {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  padding-block: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+.direct {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.mail {
+  font-size: var(--fs-lead);
+  letter-spacing: -0.01em;
+  overflow-wrap: anywhere;
+  background: linear-gradient(currentColor, currentColor) left bottom / 100% 1px no-repeat;
+  padding-bottom: 2px;
+  align-self: flex-start;
+}
+.form {
+  grid-column: 1 / -1;
+}
+@media (min-width: 900px) {
+  .aside {
+    grid-column: 1 / span 4;
+    margin-bottom: 0;
+    padding-right: 2rem;
+  }
+  .form {
+    grid-column: 5 / -1;
+  }
+}

@@ -1,0 +1,253 @@
+/* "What I can help with" — numbered service rows that open in place
+   (Dash Digital's brands list, in AURA's palette). */
+.section {
+  position: relative;
+  z-index: 1;
+  background: var(--bg);
+}
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: clamp(2.5rem, 1.5rem + 3vw, 4.5rem);
+}
+.label {
+  display: flex;
+  gap: 0.6rem;
+  align-items: baseline;
+  font-size: var(--fs-small);
+  font-weight: 500;
+  color: var(--gray);
+}
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--steel);
+  transform: translateY(-1px);
+}
+.title {
+  font-size: var(--fs-h2);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-weight: 500;
+}
+
+/* ---- List ---- */
+.list {
+  position: relative;
+  border-top: 1px solid var(--line);
+}
+.row {
+  position: relative;
+}
+.heading {
+  margin: 0;
+  font: inherit;
+}
+.trigger {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "name more";
+  align-items: center;
+  column-gap: 1rem;
+  width: 100%;
+  padding: clamp(1.25rem, 0.95rem + 1vw, 1.9rem) 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.trigger:focus-visible {
+  outline: 1px solid var(--ink);
+  outline-offset: 4px;
+}
+.nameMask {
+  grid-area: name;
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.1em;
+  margin-bottom: -0.1em;
+}
+.name {
+  display: block;
+  font-size: clamp(1.375rem, 1.05rem + 1.2vw, 2.25rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  font-weight: 500;
+  color: var(--ink);
+}
+.parts {
+  grid-area: parts;
+  display: none;
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray);
+}
+.more {
+  grid-area: more;
+  justify-self: end;
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  white-space: nowrap;
+}
+/* "More +" slides up to "Less —" */
+.moreTrack {
+  display: inline-flex;
+  flex-direction: column;
+  height: 1.3em;
+  line-height: 1.3em;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+.moreTrack span {
+  transition: translate 0.55s var(--ease-out);
+}
+.row[data-open="true"] .moreTrack span {
+  translate: 0 -100%;
+}
+
+/* ---- The line under each row: a faint hairline with a bright line that
+   loads across it on hover (left → right) and leaves to the right ---- */
+.lineMask {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  overflow: hidden;
+}
+.lineLite {
+  position: absolute;
+  inset: 0;
+  background: var(--line-strong);
+  transform-origin: left center;
+}
+.lineDark {
+  position: absolute;
+  inset: 0;
+  background: var(--ink);
+  transform: translateX(-101%);
+}
+
+/* ---- Panel: one eased height change, content rises in after it ---- */
+.panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.75s var(--ease-out);
+}
+.row[data-open="true"] .panel {
+  grid-template-rows: 1fr;
+}
+.panelInner {
+  min-height: 0;
+  overflow: hidden;
+  display: grid;
+  gap: 1.5rem;
+  opacity: 0;
+  translate: 0 0.75rem;
+  transition:
+    opacity 0.4s var(--ease-out),
+    translate 0.75s var(--ease-out);
+}
+.row[data-open="true"] .panelInner {
+  opacity: 1;
+  translate: 0 0;
+  transition-delay: 0.12s;
+}
+.panelInner > :last-child {
+  margin-bottom: clamp(1.75rem, 1.2rem + 1.5vw, 2.75rem);
+}
+.partsMobile {
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray);
+}
+.body {
+  max-width: 56ch;
+  font-size: var(--fs-body);
+  line-height: 1.65;
+  color: var(--gray);
+}
+.links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.proof {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem 1rem;
+}
+.proof > span:first-child {
+  margin-right: 0.25rem;
+}
+.proofLink {
+  font-size: var(--fs-small);
+  border-bottom: 1px solid var(--line-strong);
+  transition: border-color 0.3s;
+}
+.proofLink:hover {
+  border-color: var(--ink);
+}
+.see {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 2.75rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--line-strong);
+  transition:
+    gap 0.3s var(--ease-out),
+    border-color 0.3s;
+}
+.see:hover {
+  gap: 0.9rem;
+  border-color: var(--ink);
+}
+
+@media (min-width: 900px) {
+  .trigger {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 26rem) 7.5rem;
+    grid-template-areas: "name parts more";
+    column-gap: var(--gutter);
+  }
+  .parts {
+    display: block;
+  }
+  .partsMobile {
+    display: none;
+  }
+  .panelInner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 26rem) 7.5rem;
+    column-gap: var(--gutter);
+  }
+  .body {
+    grid-column: 1;
+  }
+  .links {
+    grid-column: 2 / 4;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .moreTrack span,
+  .panel,
+  .panelInner {
+    transition: none;
+  }
+}

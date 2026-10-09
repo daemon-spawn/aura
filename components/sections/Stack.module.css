@@ -1,0 +1,36 @@
+.wrap {
+  border-top: 1px solid var(--line);
+}
+.head {
+  grid-column: 1 / -1;
+  margin-bottom: 2.5rem;
+}
+.title {
+  margin-top: 1rem;
+  max-width: 16ch;
+}
+.groups {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 2rem var(--gutter);
+}
+.groupLabel {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 1rem;
+}
+.groups li {
+  font-size: var(--fs-small);
+  color: var(--gray);
+  padding-block: 0.3rem;
+}
+@media (min-width: 900px) {
+  .head {
+    grid-column: 1 / span 4;
+    margin-bottom: 0;
+  }
+  .groups {
+    grid-column: 5 / -1;
+  }
+}

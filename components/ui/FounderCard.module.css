@@ -1,0 +1,46 @@
+.card {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1.25rem 0.75rem 0.75rem;
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+}
+.avatar {
+  position: relative;
+  flex: none;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  font-size: 1.15rem;
+}
+.avatar img {
+  object-fit: cover;
+}
+.cardText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+.cardQ {
+  font-size: var(--fs-small);
+  color: var(--gray);
+}
+.cardLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 2rem;
+  font-weight: 500;
+}
+.cardLink svg {
+  transition: transform 0.4s var(--ease-out);
+}
+.cardLink:hover svg {
+  transform: translateX(4px);
+}

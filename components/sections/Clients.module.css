@@ -1,0 +1,123 @@
+.clients {
+  position: relative;
+  z-index: 1;
+  background: var(--bg);
+  border-block: 1px solid var(--line);
+}
+.inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: var(--max);
+  margin-inline: auto;
+}
+.label {
+  display: flex;
+  gap: 0.6rem;
+  align-items: baseline;
+  padding: 1.75rem var(--margin) 1rem;
+  font-size: var(--fs-small);
+  font-weight: 500;
+  color: var(--ink);
+}
+.dot {
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ink);
+  transform: translateY(-1px);
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+/* Hairlines between cells only. */
+.cell {
+  display: grid;
+  place-items: center;
+  min-height: 9rem;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  border-right: 1px solid var(--line);
+  border-top: 1px solid var(--line);
+}
+.cell:nth-child(2n) {
+  border-right: 0;
+}
+.link {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+}
+.logo {
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  opacity: 0.72;
+  transition: opacity 0.4s var(--ease-out);
+}
+.cell:hover .logo {
+  opacity: 1;
+}
+.wordmark {
+  font-size: clamp(1.25rem, 1rem + 0.9vw, 1.75rem);
+  line-height: 1.05;
+  color: var(--ink);
+  opacity: 0.72;
+}
+.next {
+  padding: 0;
+}
+.nextLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--steel);
+  transition: color 0.3s, background-color 0.3s;
+}
+.nextLink:hover {
+  color: var(--ink);
+  background: var(--surface);
+}
+@media (max-width: 899px) {
+  .logo {
+    max-height: 3.5rem;
+  }
+}
+@media (min-width: 900px) {
+  .inner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    column-gap: clamp(2.5rem, 1rem + 3.5vw, 5.5rem);
+  }
+  .label {
+    padding: 2rem 0 2rem var(--margin);
+    align-self: start;
+  }
+  .grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-right: var(--margin);
+    border-left: 1px solid var(--line);
+  }
+  .cell {
+    min-height: 11rem;
+    border-top: 0;
+  }
+  .cell:nth-child(n + 5) {
+    border-top: 1px solid var(--line);
+  }
+  .cell:nth-child(2n) {
+    border-right: 1px solid var(--line);
+  }
+  .cell:nth-child(4n) {
+    border-right: 0;
+  }
+}

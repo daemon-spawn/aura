@@ -1,0 +1,35 @@
+.cta {
+  position: relative;
+  z-index: 1;
+  padding-block: clamp(5rem, 3rem + 8vw, 11rem);
+  border-top: 1px solid var(--line);
+  background:
+    radial-gradient(60% 50% at 50% 100%, rgba(238, 236, 231, 0.06), transparent 70%),
+    var(--bg);
+}
+.title {
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(2.5rem, 0.9rem + 6.4vw, 8rem);
+  line-height: 0.96;
+  letter-spacing: -0.05em;
+  font-weight: 500;
+}
+.line {
+  display: block;
+}
+.actions {
+  margin-top: clamp(2.5rem, 1.5rem + 3vw, 4rem);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.75rem;
+}
+.mail {
+  font-size: var(--fs-small);
+  color: var(--gray);
+  overflow-wrap: anywhere;
+}
+.mail:hover {
+  color: var(--ink);
+}

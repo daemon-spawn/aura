@@ -1,0 +1,175 @@
+.section {
+  border-top: 1px solid var(--line);
+  background: var(--bg);
+}
+/* Stays put while the gap panel rises over it (top set in Statement.tsx). */
+.stack {
+  position: sticky;
+  z-index: 0;
+}
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: var(--max);
+  margin-inline: auto;
+}
+
+/* Left panel — rotating facts */
+.left {
+  display: flex;
+  flex-direction: column;
+  padding: 2.5rem var(--margin);
+  border-bottom: 1px solid var(--line);
+}
+.track {
+  position: relative;
+  height: 1px;
+  background: var(--line-strong);
+  overflow: hidden;
+}
+.bar {
+  position: absolute;
+  inset: 0;
+  background: var(--ink);
+  transform-origin: left center;
+  animation-name: fill;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+@keyframes fill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.25rem;
+}
+.arrows {
+  display: flex;
+  gap: 0.5rem;
+}
+.arrow {
+  width: 2.75rem;
+  height: 2.75rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line-strong);
+  color: var(--gray);
+  transition: color 0.3s, border-color 0.3s;
+}
+.arrow:hover {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+.counterWrap {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+.pause {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--steel);
+  min-height: 2.75rem;
+}
+.pause:hover {
+  color: var(--ink);
+}
+.counter {
+  font-variant-numeric: tabular-nums;
+}
+.stat {
+  margin-top: 2.5rem;
+  animation: statIn 0.6s var(--ease-out);
+}
+@keyframes statIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+.value {
+  font-size: clamp(3.5rem, 2.5rem + 3.5vw, 6rem);
+  line-height: 1;
+  letter-spacing: -0.05em;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+.label {
+  margin-top: 0.9rem;
+  font-size: var(--fs-small);
+  line-height: 1.5;
+  color: var(--gray);
+  max-width: 24ch;
+}
+
+/* Right panel — manifesto */
+.right {
+  padding: 3rem var(--margin) 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 3rem;
+}
+.manifesto {
+  font-size: clamp(1.75rem, 1.05rem + 2.9vw, 3.9rem);
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+  font-weight: 500;
+  max-width: 21ch;
+}
+.founder {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.founder > span:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+.avatar {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  font-size: 1.05rem;
+}
+.name {
+  font-weight: 500;
+}
+.role {
+  font-size: var(--fs-small);
+  color: var(--steel);
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: 300px minmax(0, 1fr);
+    min-height: 100svh;
+  }
+  .left {
+    border-bottom: 0;
+    border-right: 1px solid var(--line);
+    padding: 3.5rem 2.5rem 3.5rem var(--margin);
+  }
+  .right {
+    padding: 3.5rem var(--margin) 4.5rem 4rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .stat {
+    animation: none;
+  }
+}

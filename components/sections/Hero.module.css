@@ -1,0 +1,378 @@
+/* ==========================================================================
+   Hero — two columns. Left: pinned pattern panel + intro + label.
+   Right: headline, then image with client wins.
+   ========================================================================== */
+.hero {
+  /* Shared measures so the image's top lands on the pinned label's line. */
+  --hero-pt: calc(var(--header-h) + clamp(2rem, 1rem + 3vw, 4rem));
+  --hero-gap: clamp(2rem, 1rem + 2vw, 3.5rem);
+  --label-bottom: 2rem;
+  --label-h: 1.35rem;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "title"
+    "intro"
+    "media";
+  row-gap: 2rem;
+  padding: calc(var(--header-h) + 2.5rem) var(--margin) 5rem;
+  background: var(--bg);
+  overflow: clip;
+  isolation: isolate;
+}
+/* Left panel (background on phones, pinned column on desktop). */
+.panel {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+.pin {
+  position: relative;
+  height: 100%;
+}
+.pattern {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+/* The AURA letterforms, huge and vertical, as a faint texture. */
+.patternMark {
+  position: absolute;
+  width: 230vw;
+  max-width: none;
+  height: auto;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%) rotate(90deg);
+  color: rgba(238, 236, 231, 0.05);
+}
+.label {
+  position: absolute;
+  left: var(--margin);
+  bottom: 1.5rem;
+  font-size: var(--fs-small);
+  line-height: var(--label-h);
+  font-weight: 500;
+  color: var(--ink);
+  white-space: nowrap;
+}
+@media (min-width: 900px) and (max-width: 1199px) {
+  .label {
+    font-size: 0.8125rem;
+  }
+}
+
+.titleCell {
+  grid-area: title;
+  min-width: 0;
+}
+.title {
+  font-size: clamp(3rem, 0.4rem + 11vw, 13rem);
+  line-height: 0.9;
+  letter-spacing: -0.055em;
+  font-weight: 700;
+  color: var(--ink);
+}
+.intro {
+  grid-area: intro;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+.lead {
+  font-size: clamp(1.1875rem, 1rem + 0.5vw, 1.4375rem);
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  font-weight: 500;
+  color: var(--ink);
+  max-width: 26ch;
+}
+
+/* Image block with client wins */
+.media {
+  grid-area: media;
+  position: relative;
+  margin: 0;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #121212;
+}
+.slides {
+  position: absolute;
+  inset: 0;
+}
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.9s var(--ease-out);
+}
+.slideOn {
+  opacity: 1;
+}
+.img {
+  object-fit: cover;
+}
+/* Until a project screenshot is supplied: the client's mark, large and quiet. */
+.poster {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(70% 60% at 65% 30%, rgba(238, 236, 231, 0.08), transparent 70%),
+    linear-gradient(170deg, #1b1b1a, #0e0e0e);
+}
+.poster[data-tone="1"] {
+  background:
+    radial-gradient(60% 60% at 30% 70%, rgba(238, 236, 231, 0.07), transparent 70%),
+    linear-gradient(200deg, #1a1a19, #0d0d0d);
+}
+.poster[data-tone="2"] {
+  background:
+    radial-gradient(70% 50% at 50% 100%, rgba(238, 236, 231, 0.07), transparent 70%),
+    linear-gradient(180deg, #161615, #0c0c0c);
+}
+.posterLogo {
+  width: auto;
+  max-width: 46%;
+  max-height: 46%;
+  opacity: 0.16;
+  transform: translate(12%, 6%);
+}
+.posterCap {
+  position: absolute;
+  right: 1.25rem;
+  bottom: 1.1rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(238, 236, 231, 0.55);
+}
+
+.wins {
+  position: absolute;
+  top: clamp(0.75rem, 0.4rem + 1.4vw, 1.75rem);
+  left: clamp(0.75rem, 0.4rem + 1.4vw, 1.75rem);
+  right: clamp(0.75rem, 0.4rem + 1.4vw, 1.75rem);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  z-index: 2;
+}
+/* A card is a loader: the fill rises bottom → top while its project shows. */
+.win {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  gap: 0.9rem;
+  align-items: center;
+  max-width: 24rem;
+  padding: 0.7rem 1.1rem 0.7rem 0.7rem;
+  background: rgba(28, 28, 27, 0.78);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  color: #eeece7;
+}
+.fill {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: #eeece7;
+  transform-origin: center bottom;
+  transform: scaleY(0);
+}
+.winOn .fill[style] {
+  animation-name: rise;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+.winFull .fill {
+  transform: none;
+}
+@keyframes rise {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+.tile {
+  position: relative;
+  z-index: 1;
+  flex: none;
+  width: 3.75rem;
+  height: 3.75rem;
+  display: grid;
+  place-items: center;
+  background: #ffffff;
+  color: #0a0a0a;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  overflow: hidden;
+}
+.tileLogo {
+  width: 84%;
+  height: 84%;
+  object-fit: contain;
+}
+/* Text inverts as the fill passes behind it — readable at every point of the load. */
+.winText {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  color: #eeece7;
+  mix-blend-mode: difference;
+}
+.winLine {
+  font-size: 0.9375rem;
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.winMeta {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+.wins li + li .win {
+  margin-left: 0.6rem;
+}
+
+@media (max-width: 899px) {
+  .label {
+    bottom: 1.75rem;
+  }
+  .win {
+    max-width: 100%;
+  }
+  .tile {
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.125rem;
+  }
+  .winLine {
+    font-size: 0.875rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    grid-template-areas:
+      "intro title"
+      "intro media";
+    column-gap: clamp(2.5rem, 1rem + 3.5vw, 5.5rem);
+    row-gap: var(--hero-gap);
+    padding: var(--hero-pt) var(--margin) clamp(2.5rem, 1.5rem + 2vw, 4rem) 0;
+    align-items: start;
+  }
+  /* Headline row fills the first screen so the image starts on the label's line. */
+  .titleCell {
+    min-height: calc(100svh - var(--hero-pt) - var(--hero-gap) - var(--label-bottom) - var(--label-h));
+  }
+  /* Panel becomes the pinned left column. */
+  .panel {
+    position: relative;
+    inset: auto;
+    z-index: 0;
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    align-self: stretch;
+    margin-top: calc(-1 * var(--hero-pt));
+    margin-bottom: calc(-1 * clamp(2.5rem, 1.5rem + 2vw, 4rem));
+    background: #0e0e0e;
+  }
+  .pin {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+  }
+  .patternMark {
+    width: 250svh;
+    top: 50%;
+  }
+  .label {
+    bottom: var(--label-bottom);
+  }
+  .intro {
+    position: relative;
+    z-index: 1;
+    grid-column: 1;
+    grid-row: 1;
+    padding-left: var(--margin);
+    padding-top: 0.6rem;
+    padding-right: 0.5rem;
+  }
+
+  .media {
+    aspect-ratio: 16 / 10.5;
+  }
+}
+
+/* Hero film — sits in the slide like an image, toned slightly toward the palette */
+.film {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.82) brightness(0.86) contrast(1.04);
+  background: var(--surface, #141414);
+}
+
+/* Device slide — the client's live site on a phone, over a soft wash of their own hero */
+.device {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #121212;
+}
+.deviceBackdrop {
+  position: absolute;
+  inset: -4%;
+  width: 108%;
+  height: 108%;
+  max-width: none;
+  object-fit: cover;
+  filter: brightness(0.5) saturate(0.75);
+  transform: scale(1.04);
+}
+.device::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 90% at 72% 50%, transparent 0%, rgba(10, 10, 10, 0.55) 70%);
+  pointer-events: none;
+}
+.devicePhone {
+  position: absolute;
+  z-index: 1;
+  top: 7%;
+  height: 86%;
+  right: 12%;
+}
+.device .posterCap {
+  z-index: 2;
+  left: 1.25rem;
+  right: auto;
+}
+@media (max-width: 899px) {
+  .devicePhone {
+    top: auto;
+    bottom: -38%;
+    height: 118%;
+    right: 6%;
+  }
+}

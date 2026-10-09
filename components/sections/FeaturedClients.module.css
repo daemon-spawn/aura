@@ -1,0 +1,114 @@
+/* Featured clients — Dash Digital's styling in AURA's paper tones:
+   big uppercase title, four open columns, no boxes or rules. */
+.section {
+  --inset: max(var(--margin), calc((100vw - var(--max)) / 2 + var(--margin)));
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+.title {
+  margin-bottom: clamp(2.5rem, 1.75rem + 2.5vw, 4.5rem);
+  font-size: var(--fs-h2);
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+/* Row of clients: draggable / swipeable below desktop, four columns at desktop */
+.track {
+  display: flex;
+  gap: clamp(1.75rem, 1rem + 2vw, 3rem);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--inset);
+  padding-inline: var(--inset);
+  scrollbar-width: none;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.track::-webkit-scrollbar {
+  display: none;
+}
+.track:focus-visible {
+  outline: 1px solid var(--ink);
+  outline-offset: 4px;
+}
+.dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+}
+.dragging .card {
+  pointer-events: none;
+}
+.card {
+  flex: none;
+  width: min(78vw, 22rem);
+  display: flex;
+  flex-direction: column;
+  scroll-snap-align: start;
+}
+.logoWrap {
+  display: flex;
+  align-items: center;
+  height: 3.5rem;
+  margin-bottom: 1.5rem;
+}
+.logo {
+  width: auto;
+  height: auto;
+  max-height: 3.4rem;
+  max-width: 10rem;
+  object-fit: contain;
+  object-position: left center;
+  pointer-events: none;
+}
+.wordmark {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.625rem;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.cardInner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2.25rem;
+}
+.paragraph {
+  flex: 1;
+  max-width: 40ch;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--gray);
+}
+.quote p {
+  font-size: var(--fs-body);
+  line-height: 1.5;
+  color: var(--ink);
+}
+.quote footer {
+  margin-top: 0.6rem;
+}
+
+@media (min-width: 1100px) {
+  .track {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    overflow: visible;
+    cursor: auto;
+    user-select: auto;
+    -webkit-user-select: auto;
+    max-width: var(--max);
+    margin-inline: auto;
+    padding-inline: var(--margin);
+  }
+  .card {
+    width: auto;
+  }
+}

@@ -1,0 +1,53 @@
+.faq {
+  position: relative;
+  z-index: 1;
+  background: var(--bg);
+  scroll-margin-top: var(--header-h);
+}
+.inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+.label {
+  display: flex;
+  gap: 0.6rem;
+  align-items: baseline;
+  font-size: var(--fs-small);
+  font-weight: 500;
+  color: var(--gray);
+}
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--steel);
+  transform: translateY(-1px);
+}
+.title {
+  font-size: clamp(2rem, 1.3rem + 2.4vw, 3.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  font-weight: 500;
+  max-width: 14ch;
+}
+.founder {
+  margin-top: 0.75rem;
+}
+@media (min-width: 900px) {
+  .inner {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: 4rem;
+  }
+  .head {
+    position: sticky;
+    top: calc(var(--header-h) + 2rem);
+    align-self: start;
+  }
+}

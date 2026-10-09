@@ -1,0 +1,30 @@
+.next {
+  border-top: 1px solid var(--line);
+}
+.link {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding-block: clamp(4rem, 2.5rem + 5vw, 7.5rem);
+}
+.name {
+  transition: transform 0.7s var(--ease-out);
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+.chev {
+  flex: none;
+  width: 16px;
+  height: 14px;
+  transition: transform 0.5s var(--ease-out);
+}
+.link:hover .name {
+  transform: translateX(0.75rem);
+}
+.link:hover .chev {
+  transform: translateX(6px);
+}

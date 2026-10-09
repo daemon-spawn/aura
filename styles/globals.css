@@ -1,0 +1,324 @@
+/* ==========================================================================
+   AURA — design tokens & base
+   Component styles live next to components as CSS Modules.
+   ========================================================================== */
+
+:root {
+  /* Colour — warm matte monochrome. Off-white is the only accent. */
+  --bg: #0a0a0a;
+  --surface: #141414;
+  --surface-2: #1c1c1b;
+  --graphite: #2a2a28;
+  --steel: #8e8d88;
+  --gray: #b4b2ac;
+  --ink: #eeece7;
+  --line: rgba(238, 236, 231, 0.1);
+  --line-strong: rgba(238, 236, 231, 0.2);
+  /* Paper — Brand Foundation off-white, used for the work spread only */
+  --paper: #f5f5f3;
+  --paper-ink: #0a0a0a;
+  --paper-gray: #3d3c39;
+  --paper-steel: #5e5d59;
+  --paper-surface: #e8e7e3;
+
+  /* Aliases kept from the original build */
+  --text: var(--ink);
+  --muted: var(--steel);
+
+  /* Type */
+  --font-sans: "Satoshi", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-serif: "Lora Variable", "Lora", Georgia, "Times New Roman", serif;
+  --font-mono: "DM Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --fs-masthead: clamp(2.875rem, 0.9rem + 7.6vw, 9.25rem);
+  --fs-display: clamp(2.75rem, 1.15rem + 6.4vw, 7.5rem);
+  --fs-h2: clamp(2.125rem, 1.35rem + 3.1vw, 4.5rem);
+  --fs-h3: clamp(1.375rem, 1.18rem + 0.8vw, 1.875rem);
+  --fs-lead: clamp(1.1875rem, 1.05rem + 0.55vw, 1.5rem);
+  --fs-body: 1.0625rem;
+  --fs-small: 0.9375rem;
+  --fs-meta: 0.75rem;
+
+  /* Layout */
+  --margin: clamp(1.25rem, 4vw, 3.5rem);
+  --gutter: clamp(1rem, 2vw, 2rem);
+  --max: 1680px;
+  --section: clamp(6rem, 3.5rem + 9vw, 12rem);
+  --header-h: 4.5rem;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur: 0.6s;
+
+  color-scheme: dark;
+}
+
+/* --------------------------------------------------------------------------
+   Reset
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+body {
+  min-height: 100svh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "ss01", "kern";
+  overflow-x: clip;
+}
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+button {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+}
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+}
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 500;
+  text-wrap: balance;
+}
+p {
+  text-wrap: pretty;
+}
+::selection {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+/* Focus — visible, monochrome, never removed */
+:focus-visible {
+  outline: 1px solid var(--ink);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Layout primitives
+   -------------------------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: var(--margin);
+}
+
+/* 12-column grid. Power line = start of column 5 (desktop). */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+}
+
+.section {
+  padding-block: var(--section);
+}
+
+.rule {
+  height: 1px;
+  background: var(--line);
+  border: 0;
+  transform-origin: left center;
+}
+
+/* Paper context — remaps tokens so every component reads correctly on off-white. */
+.paper {
+  --bg: var(--paper);
+  --surface: var(--paper-surface);
+  --surface-2: #dddcd8;
+  --ink: var(--paper-ink);
+  --gray: var(--paper-gray);
+  --steel: var(--paper-steel);
+  --line: rgba(10, 10, 10, 0.12);
+  --line-strong: rgba(10, 10, 10, 0.24);
+  background: var(--bg);
+  color: var(--ink);
+}
+.paper ::selection {
+  background: var(--paper-ink);
+  color: var(--paper);
+}
+
+/* Slash label — AURA's taxonomy device: "AURA / Presence" */
+.slash {
+  display: inline-flex;
+  gap: 0.5em;
+}
+.slash > span:first-child {
+  color: var(--ink);
+}
+
+/* --------------------------------------------------------------------------
+   Type roles
+   -------------------------------------------------------------------------- */
+.t-display {
+  font-size: var(--fs-display);
+  line-height: 0.96;
+  letter-spacing: -0.04em;
+  font-weight: 500;
+}
+.t-h2 {
+  font-size: var(--fs-h2);
+  line-height: 1.02;
+  letter-spacing: -0.032em;
+  font-weight: 500;
+}
+.t-h3 {
+  font-size: var(--fs-h3);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  font-weight: 500;
+}
+.t-lead {
+  font-size: var(--fs-lead);
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  color: var(--gray);
+}
+.t-body {
+  font-size: var(--fs-body);
+  line-height: 1.65;
+  color: var(--gray);
+  max-width: 62ch;
+}
+.t-small {
+  font-size: var(--fs-small);
+  line-height: 1.55;
+  color: var(--gray);
+}
+/* Labels, indices, metadata — DM Mono, the system's "data" voice */
+.t-meta {
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  line-height: 1.45;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: var(--steel);
+}
+/* Lora italic — one editorial phrase at a time */
+.serif {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+.ink {
+  color: var(--ink);
+}
+.steel {
+  color: var(--steel);
+}
+
+/* Screen-reader only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 200;
+  padding: 0.75rem 1rem;
+  background: var(--ink);
+  color: var(--bg);
+  font-size: var(--fs-small);
+  font-weight: 500;
+  transform: translateY(-200%);
+}
+.skip-link:focus {
+  transform: none;
+}
+
+/* --------------------------------------------------------------------------
+   Motion gate
+   `html.motion` is set by an inline script only when the visitor allows motion.
+   Elements awaiting their reveal are hidden; a failsafe makes them visible
+   if JavaScript never runs.
+   -------------------------------------------------------------------------- */
+.motion [data-anim] {
+  visibility: hidden;
+  animation: anim-failsafe 0s linear 4s forwards;
+}
+@keyframes anim-failsafe {
+  to {
+    visibility: visible;
+  }
+}
+.split-line {
+  padding-bottom: 0.06em;
+  margin-bottom: -0.06em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   TV static (components/motion/TvNoise.tsx) — faint no-signal "snow"
+   -------------------------------------------------------------------------- */
+.tv {
+  position: fixed;
+  inset: 0;
+  z-index: 140;
+  pointer-events: none;
+  opacity: 0.045;
+  background-size: 160px 160px;
+  image-rendering: pixelated;
+}
