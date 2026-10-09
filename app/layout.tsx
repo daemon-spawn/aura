@@ -10,6 +10,7 @@ import { Footer } from "@/components/sections/Footer";
 import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { Analytics } from "@/components/Analytics";
 import { TvNoise } from "@/components/motion/TvNoise";
+import { SoundFx } from "@/components/motion/SoundFx";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -72,6 +73,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Footer />
         </SmoothScroll>
         <TvNoise />
+        <SoundFx />
         <Analytics />
       </body>
     </html>

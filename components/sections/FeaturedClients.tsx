@@ -105,6 +105,7 @@ export function FeaturedClients() {
           <article
             key={c.id}
             className={styles.card}
+            data-sound
             aria-label={c.name}
             data-anim="fade"
             data-anim-delay={String(Math.min(i, 3) * 0.08)}

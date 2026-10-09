@@ -79,6 +79,7 @@ export function ServiceList({ id = "services" }: { id?: string }) {
               <li
                 key={s.title}
                 className={styles.row}
+                data-sound
                 data-open={isOpen ? "true" : "false"}
                 onMouseEnter={() => sweep(i, "in")}
                 onMouseLeave={() => {

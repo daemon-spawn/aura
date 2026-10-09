@@ -7,7 +7,7 @@ import styles from "./FounderCard.module.css";
 /** "Want to know if we'd be a good fit? — Book a call with Andrew" (MONOLOG founder card). */
 export function FounderCard({ className }: { className?: string }) {
   return (
-    <aside className={`${styles.card} ${className ?? ""}`} aria-label="Book with Andrew">
+    <aside data-sound className={`${styles.card} ${className ?? ""}`} aria-label="Book with Andrew">
       <span className={styles.avatar}>
         {site.portrait ? (
           <Image src={site.portrait} alt="" fill sizes="56px" />

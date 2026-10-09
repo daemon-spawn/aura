@@ -25,7 +25,7 @@ export function SuccessStories({ projects, showAllLink = true, id = "work" }: Pr
             stories
           </p>
 
-          <div className={styles.media} data-anim="fade">
+          <div className={styles.media} data-anim="fade" data-sound>
             <StoryMedia project={p}>
               <Plate project={p} index={i} sizes="(min-width: 1100px) 50vw, 100vw" className={styles.plate} />
             </StoryMedia>

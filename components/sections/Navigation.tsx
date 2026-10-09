@@ -7,6 +7,7 @@ import { site } from "@/content/site";
 import { projects } from "@/content/projects";
 import { Wordmark } from "@/components/brand/Wordmark";
 import { Button } from "@/components/ui/Button";
+import { SoundToggle } from "@/components/ui/SoundToggle";
 import { useLenis } from "@/components/motion/SmoothScroll";
 import styles from "./Navigation.module.css";
 
@@ -81,6 +82,7 @@ export function Navigation() {
         </nav>
 
         <div className={styles.actions}>
+          <SoundToggle />
           {pathname !== site.primaryCta.href && (
             <Button href={site.primaryCta.href} track="book_call_click" className={styles.cta}>
               Book a call

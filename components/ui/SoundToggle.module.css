@@ -1,0 +1,38 @@
+/* Ghost square, sized to sit beside the nav's "Book a call". */
+.btn {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2.625rem;
+  height: 2.625rem;
+  border: 1px solid var(--line-strong);
+  color: var(--steel);
+  transition:
+    color 0.35s var(--ease-out),
+    border-color 0.35s var(--ease-out);
+}
+.btn:hover,
+.btn:focus-visible {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+.btn[aria-pressed="true"] {
+  color: var(--ink);
+}
+.waves {
+  transform-origin: 10px 10px;
+}
+:global(.motion) .btn[aria-pressed="true"]:hover .waves {
+  animation: pulse 0.9s var(--ease-out) infinite;
+}
+@keyframes pulse {
+  50% {
+    opacity: 0.45;
+  }
+}
+/* Hover sounds need a mouse; hide the switch on touch-only screens. */
+@media not all and (hover: hover) {
+  .btn {
+    display: none;
+  }
+}

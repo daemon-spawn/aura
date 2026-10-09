@@ -22,7 +22,7 @@ export function Principles() {
         </div>
         <ul className={styles.list}>
           {principles.map((p) => (
-            <li key={p.title} className={styles.item} data-anim="fade">
+            <li key={p.title} className={styles.item} data-anim="fade" data-sound>
               <h3 className={styles.title}>{p.title}</h3>
               <p className="t-small">{p.body}</p>
             </li>
