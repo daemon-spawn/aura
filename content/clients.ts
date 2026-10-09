@@ -26,6 +26,7 @@ export const clients: Client[] = [
   { id: "bigbee", name: "Big Bee Logistics", sector: "Logistics", logo: { w: 370, h: 477 }, h: 4.5, project: "big-bee-logistics" },
   { id: "midcenturist", name: "Midcenturist", sector: "Furniture ecommerce", logo: { w: 324, h: 212 }, h: 3.4, project: "midcenturist" },
   { id: "handsofsympathy", name: "Hands of Sympathy", sector: "Mental health", project: "hands-of-sympathy" },
+  { id: "anlusi", name: "Anlusi Labs", sector: "Software studio", logo: { w: 300, h: 104 }, h: 2.75, project: "anlusi" },
 ];
 
 export const clientLogo = (id: string, variant: "mono" | "color" | "tile" | "ink" = "mono") => `/clients/${id}-${variant}.png`;

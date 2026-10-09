@@ -66,6 +66,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: "mazhwetu-general-works",
+    url: "mazhwetu-mock-8mca.vercel.app",
     video: {
       src: "/work/mazhwetu-general-works/preview.mp4",
       webm: "/work/mazhwetu-general-works/preview.webm",
@@ -221,6 +222,7 @@ export const projects: Project[] = [
   {
     // CONFIRM: live domain (recorded on a Vercel preview), year, scope and stack.
     slug: "midcenturist",
+    url: "midcenturist-official.vercel.app",
     video: {
       src: "/work/midcenturist/preview.mp4",
       webm: "/work/midcenturist/preview.webm",
@@ -312,6 +314,7 @@ export const projects: Project[] = [
   {
     // CONFIRM: public domain (recorded on a Vercel preview) and year.
     slug: "anlusi",
+    url: "anlusiofficialsite-v1-rw29.vercel.app",
     video: {
       src: "/work/anlusi/preview.mp4",
       webm: "/work/anlusi/preview.webm",
@@ -353,6 +356,7 @@ export const projects: Project[] = [
   },
   {
     slug: "krdf-prosuite",
+    url: "krdf-prosuite.vercel.app",
     screen: {
       src: "/work/krdf-prosuite/mobile.webp",
       w: 1179,

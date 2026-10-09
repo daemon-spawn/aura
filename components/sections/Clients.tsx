@@ -1,14 +1,11 @@
 import Link from "next/link";
 import { clients, clientLogo } from "@/content/clients";
-import { site } from "@/content/site";
 import { Reveal } from "@/components/motion/Reveal";
-import { Arrow } from "@/components/brand/Arrow";
 import styles from "./Clients.module.css";
 
 /**
  * "Brands I've helped" — MONOLOG pattern: dot label on the left, a 4 × 2 grid
- * of single-colour marks divided by hairlines (no outer border). The eighth
- * cell is an honest invitation rather than a padded logo.
+ * of single-colour marks divided by hairlines (no outer border).
  */
 export function Clients() {
   return (
@@ -45,12 +42,6 @@ export function Clients() {
               </li>
             );
           })}
-          <li className={`${styles.cell} ${styles.next}`} data-anim="fade" data-anim-delay="0.18">
-            <Link href={site.primaryCta.href} className={styles.nextLink} data-track="book_call_click">
-              <span>Your brand next</span>
-              <Arrow />
-            </Link>
-          </li>
         </ul>
       </div>
     </Reveal>
